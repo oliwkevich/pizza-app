@@ -1,0 +1,25 @@
+export const fetchPizzas = (sortBy, category) => (dispatch) => {
+  dispatch(setLoaded(false));
+  console.log(category, sortBy);
+  fetch(
+    `http://localhost:3001/pizzas?${
+      category !== null ? `category=${category}` : ''
+    }&_sort=${sortBy.type}&_order=${sortBy.order}`
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      dispatch(setPizzas(data));
+    });
+};
+
+export const setLoaded = (payload) => ({
+  type: "SET_LOADED",
+  payload,
+});
+
+export const setPizzas = (items) => ({
+  type: "SET_PIZZAS",
+  payload: items,
+});

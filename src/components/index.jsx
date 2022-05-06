@@ -1,0 +1,7 @@
+export {Header} from './Header'
+export {Categories} from './Categories'
+export {Sort} from './Sort'
+export {Home} from '../pages/Home'
+export {Cart} from '../pages/Cart'
+export {PizzaBlock} from './PizzaBlock'
+export {LoadingBlock} from './PizzaBlock/PizzaLoader'
