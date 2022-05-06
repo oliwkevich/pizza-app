@@ -2,10 +2,6 @@ import React from "react";
 
 export const Categories = React.memo(({ activeCategory, items, onClickCategory }) => {
 
-  // const onSelectItem = (index) => {
-  //   onClickItem(index);
-  // };
-
   return (
     <div className="categories">
       <ul>

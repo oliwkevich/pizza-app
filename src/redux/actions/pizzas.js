@@ -1,6 +1,5 @@
 export const fetchPizzas = (sortBy, category) => (dispatch) => {
   dispatch(setLoaded(false));
-  console.log(category, sortBy);
   fetch(
     `http://localhost:3001/pizzas?${
       category !== null ? `category=${category}` : ''

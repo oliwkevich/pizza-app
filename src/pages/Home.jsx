@@ -3,17 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Categories, Sort, PizzaBlock, LoadingBlock } from "../components";
 import { setCategory, setSortBy } from "../redux/actions/filters";
 import { fetchPizzas } from "../redux/actions/pizzas";
+import { addPizzaToCart } from "../redux/actions/cart";
 
 export const Home = () => {
   const { pizzas, isLoaded, sortBy, category } = useSelector(
-    ({ pizzas, filters }) => {
-      return {
-        pizzas: pizzas.items,
-        isLoaded: pizzas.isLoaded,
-        sortBy: filters.sortBy,
-        category: filters.category,
-      };
-    }
+    ({ pizzas, filters }) => ({
+      pizzas: pizzas.items,
+      isLoaded: pizzas.isLoaded,
+      sortBy: filters.sortBy,
+      category: filters.category,
+    })
   );
   const dispatch = useDispatch();
   const categoriesNames = [
@@ -24,9 +23,9 @@ export const Home = () => {
     "Закрытые",
   ];
   const sortItems = [
-    { name: "популярности", type: "popular", order: 'desk'},
-    { name: "цене", type: "price", order: 'ask'},
-    { name: "алфавиту", type: "name", order: 'ask'},
+    { name: "популярности", type: "popular", order: "desk" },
+    { name: "цене", type: "price", order: "ask" },
+    { name: "алфавиту", type: "name", order: "ask" },
   ];
 
   React.useEffect(() => {
@@ -40,6 +39,10 @@ export const Home = () => {
   const onSelectSortType = React.useCallback((type) => {
     dispatch(setSortBy(type));
   }, []);
+
+  const handleAddPizza = (obj) => {
+    dispatch(addPizzaToCart(obj))
+  };
 
   return (
     <div className="container">
@@ -58,7 +61,13 @@ export const Home = () => {
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
         {isLoaded
-          ? pizzas.map((obj) => <PizzaBlock key={obj.id} pizzas={obj} />)
+          ? pizzas.map((obj) => (
+              <PizzaBlock
+                key={obj.id}
+                pizzas={obj}
+                onClickAddPizza={handleAddPizza}
+              />
+            ))
           : Array(10)
               .fill(0)
               .map((_, index) => <LoadingBlock key={index} />)}
