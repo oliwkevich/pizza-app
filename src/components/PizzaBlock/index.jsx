@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Button } from "../Button";
 
-export const PizzaBlock = ({ pizzas, onClickAddPizza }) => {
+export const PizzaBlock = ({ pizzas, onClickAddPizza, addedCount }) => {
   const [activeType, setActiveType] = React.useState(pizzas.types[0]);
   const [activeSize, setActiveSize] = React.useState(0);
   const aviableTypes = ["тонкое", "традиционное"];
@@ -83,7 +83,7 @@ export const PizzaBlock = ({ pizzas, onClickAddPizza }) => {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
+          {addedCount && <i>{addedCount}</i>}
         </Button>
       </div>
     </div>

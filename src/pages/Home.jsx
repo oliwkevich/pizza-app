@@ -6,12 +6,13 @@ import { fetchPizzas } from "../redux/actions/pizzas";
 import { addPizzaToCart } from "../redux/actions/cart";
 
 export const Home = () => {
-  const { pizzas, isLoaded, sortBy, category } = useSelector(
-    ({ pizzas, filters }) => ({
+  const { pizzas, isLoaded, sortBy, category, cart } = useSelector(
+    ({ pizzas, filters, cart }) => ({
       pizzas: pizzas.items,
       isLoaded: pizzas.isLoaded,
       sortBy: filters.sortBy,
       category: filters.category,
+      cart: cart.items,
     })
   );
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ export const Home = () => {
   }, []);
 
   const handleAddPizza = (obj) => {
-    dispatch(addPizzaToCart(obj))
+    dispatch(addPizzaToCart(obj));
   };
 
   return (
@@ -65,6 +66,7 @@ export const Home = () => {
               <PizzaBlock
                 key={obj.id}
                 pizzas={obj}
+                addedCount={cart[obj.id] && cart[obj.id].length}
                 onClickAddPizza={handleAddPizza}
               />
             ))
