@@ -20,7 +20,7 @@ export const CartItem = ({id, name, type, size, totalPrice, totalCount, onRemove
         <p>{type} тесто, {size} см.</p>
       </div>
       <div className="cart__item-count">
-        <div className="button button--outline button--circle cart__item-count-minus">
+        {/* <div className="button button--outline button--circle cart__item-count-minus">
           <svg
             width="10"
             height="10"
@@ -37,9 +37,9 @@ export const CartItem = ({id, name, type, size, totalPrice, totalCount, onRemove
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </div> */}
         <b>{totalCount}</b>
-        <div className="button button--outline button--circle cart__item-count-plus">
+        {/* <div className="button button--outline button--circle cart__item-count-plus">
           <svg
             width="10"
             height="10"
@@ -56,7 +56,7 @@ export const CartItem = ({id, name, type, size, totalPrice, totalCount, onRemove
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </div> */}
       </div>
       <div className="cart__item-price">
         <b>{totalPrice} Ft.</b>
