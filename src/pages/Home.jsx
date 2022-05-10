@@ -66,7 +66,7 @@ export const Home = () => {
               <PizzaBlock
                 key={obj.id}
                 pizzas={obj}
-                addedCount={cart[obj.id] && cart[obj.id].length}
+                addedCount={cart[obj.id] && cart[obj.id].items.length}
                 onClickAddPizza={handleAddPizza}
               />
             ))
